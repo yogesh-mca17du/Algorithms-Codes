@@ -1,0 +1,110 @@
+MCA 301 : Design and analysis of Algorithms
+Assignment : 3
+Promlem statement : 7
+
+
+--------------------
+Programming Approach
+--------------------
+
+1. Dynamic Programming
+2. Iterative
+
+-----------
+EXPLANATION
+-----------
+
+	Global variables
+	----------------
+	
+	int buy[N]               to store the min price value seen so far at each day denoted by 'i'
+	int p[N]={9,1,5}         price per share at each day 'i'
+	int k             	 loop counter variable
+	int profit[N]     	 stores profit calculated at each day
+	
+======================================================================================================================
+	
+	--------------------------------------
+	Function 1: minBuyday()
+	--------------------------------------
+ 
+	**********
+	Pseudocode
+	**********
+
+	minBuyday()
+    	1.	buy[0] = p[0]  , initialise with price of shares at first day;
+    	2.	for i = 1 to N-1
+    	3.		 buy[k]=min(buy[k-1],p[k])
+
+      	4.	return (index of the day when buying is min)
+
+	DOCUMENTATION :
+
+	 /*
+    		Objective : To find min value day seen so far .
+    		Input : None
+   		 Return : Min day to buy shares
+   	 */
+
+	
+
+======================================================================================================================
+
+	-------------------------
+	Function 2: profit_day()
+	-------------------------
+
+	**********
+	Pseudocode
+	**********
+
+	profit_day():
+	1.	profit[0]=0;            //if sold first day only , not a possible case
+   	2.	for k=1 to N-1
+	3.	                  //recurssive
+        		profit[k]=max{(profit[k-1],(p[k]-buy[k]))
+
+	4. 	return (max profit , day at which selling share will yeild max profit)
+
+    
+
+	DOCUMENTATION: 
+
+	/*
+
+    	Objective : To compute profit at each day by selling shares .
+    	Input : None
+    	Return : Max Profit per share and day to sell shares-(as a pair)
+
+ 	*/
+
+
+======================================================================================================================	
+
+ 
+----------
+Complexity
+----------
+
+Function 1:
+
+line 1 		-> O(1)
+loop 2-3	-> O(n)	linear time
+line 4		-> O(1)
+
+--------------------------------------------------
+
+Function 2:
+
+line 1		-> O(1)
+line 2-3	-> O(n)
+line 4		-> O(1)
+
+--------------------------------------------------
+
+
+	Time complexity  = O(n)+O(n)
+			 =O(n) 		 //more efficient approach
+
+	Space complexity = O(n^2)	//profit array and buy array , each of size N	

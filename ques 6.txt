@@ -1,0 +1,108 @@
+MCA 301 : Design and analysis of Algorithms
+Assignment : 3
+Promlem statement : 6
+
+
+--------------------
+Programming Approach
+--------------------
+
+1. Divide and Conquer
+
+
+======================================================================================================================
+
+	-------------------------------
+	Function 1 : check(int c, int *arr, int beg, int end)
+	-------------------------------
+
+	**********
+	Pseudocode
+	**********
+
+		check(int c, int *arr, int beg, int end)
+	1.		int count=0;
+
+    	2.		for i=beg to end
+    
+    	3.		    if(arr[i]%5==c%5) , checking the equivalence of element c with all other elements
+        4.   		       count++;
+    
+    	5.		if(count > (beg+end)/2) 
+        6.			return 1;
+    	7.		else
+        8.			return 0;
+	
+
+	DOCUMENTATION:
+	
+	/*
+    	Objective: the function checking whether 'c' is the majority element of all or not.
+   	Input Variables:
+        	c: variable returned from divideInput function
+        	*arr: input array
+        	beg: start of the array
+        	end: end of the array
+    	Return Value:
+        true, if c is the majority element
+        else, false
+   	 */
+======================================================================================================================
+	
+	----------------------------------
+	Function 2 : divideInput(arr, n)
+	----------------------------------
+	
+	**********
+	Pseudocode
+	**********
+
+	divideInput(int *arr, int beg, int end)
+
+    1.		int c, found, mid;
+
+    2.		if(beg==end)   
+    3.   		return 0;
+
+    4.		else if(beg+1==end) , checking equivalence of two elements of a set
+    
+    5.			 if(arr[beg]%5 == arr[end]%5)
+    6.       			return arr[beg];
+    
+    7.		mid=(beg+end)/2 ,diving the input into 2 equal halves
+    8.		c=divideInput(arr,beg,mid);
+    9.	        if(c)
+    
+    10.		    found=check(c,arr,beg,end) -functions checks if the number found equal is equivalent to the majority of numbers in the set
+    11.	 	    if(found)
+    12.                    return (returning the majority element)
+    13.             else
+    14.                    return 0;
+    
+    15.         else
+    
+    16.    	    c=divideInput(arr,mid+1,end);
+    17.             found=check(c,arr,beg,end);
+    18.             if(found)
+    19.                  return c;
+    20.             else
+    21.                  return 0;
+    
+    22.          return 0;
+
+
+======================================================================================================================
+	
+----------
+Complexity
+----------
+Function divideInput(int *, int, int)
+Divides the input into equal halves.
+
+Function check(int, int *, int, int)
+Checks whether the element is in majority or not. It takes O(n) time.
+Let us denote the running time of the algorithm on array of size ‘n’, by T(n). 
+Then,
+T(n) = T(n/2) + T(n/2) +O(n),		if n>2
+       O(1),					if n=2
+By master theorem , T(n)=O(nlogn).

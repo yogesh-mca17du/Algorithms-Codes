@@ -1,0 +1,66 @@
+MCA 301 : Design and analysis of Algorithms
+Assignment : 3
+Promlem statement : 11
+
+
+--------------------
+Programming Approach
+--------------------
+
+1. Dyanamic programming
+2. Recursion
+
+-----------
+EXPLANATION
+-----------
+
+	**********
+	Pseudocode
+	**********
+
+	anti_sqaud(no, max, min_in_grp):
+    	1.	if no == 0: return 1
+    	2.	if no < min_in_grp: return 0
+    	3.	if max < min_in_grp: return 0
+    	4.	if memorize_table[no][max] == NIL:
+      	5.		 memoize_table[no][max] = anti_sqaud(no-max, max, min_in_grp) + anti_sqaud(no, max-1, min_in_grp)
+    	6.	return memoize_table[no][max]
+
+	Description
+	-----------
+	/*
+	Objective :	Calculates no. of partitions possible of 'n' people such that each group has atmost 'max' and atleast 'min' number of people.
+
+	Input variables
+                    -no : total number of people to be partitioned
+                    - max : maximum number of people allowed in each group
+                    - min : minimum number of people required in each group(this value remains same for each recursive call)
+
+	Return value :no. of partitions possible
+
+	*/	
+	Global variables
+	----------------
+	- memorize_table : 2D array containing values returned by function call anti_squad(n,m,k) for every valid combination of n and m.
+					
+
+----------
+Complexity
+----------
+
+Total no. of people = N
+Minimum no. of people required in each group = K
+
+Recurrence relation:	T(n,m) = T(n-m,m) + T(n,m-1)	;	n, m <= N
+			T(0,m) = 1
+			T(n,0) = 0
+			T(n,m) = 0			;	n < K or m < K
+
+The base cases take constant time - O(1).
+Size of memoize_table is N x N.
+We will be calcuting values of memoize_table[n][m] for n,m <= N only once since we are 
+returning immediately if its value is already computed.
+Therefore, total time complexity is O(N^2). 
+
+Time complexity:	O(N^2)
+Space complexity:	O(N^2)

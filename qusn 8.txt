@@ -1,0 +1,98 @@
+MCA 301 : Design and analysis of Algorithms
+Assignment : 3
+Promlem statement : 8
+
+--------------------
+Programming Approach
+--------------------
+
+1. Greedy
+2. Iterative
+
+------------
+Explaination
+------------
+
+	Data structure
+	--------------
+
+	- license => {license_no, growth_rate}
+
+	- license_no : It refers to the number associated to a license
+	- growth_rate : the rate by which the price of a license is increasing every month
+
+======================================================================================================================
+
+	-------------------------------
+	Function 1 : max_calc(arr, n)
+	-------------------------------
+
+	**********
+	Pseudocode
+	**********
+
+	max_calc(arr, n):
+    	1.	maximum = 0
+	2.	for i = 1 to n
+	3.		if arr[i].growth_rate > arr[maximum].growth_rate	
+	4.			maximum = i
+	5.	swap(arr[0].growth_rate, arr[maximum].growth_rate)
+	6.	swap(arr[0].license_no, arr[maximum].license_no)
+	7.	return arr[0].license_no
+
+	Description
+	-----------
+	max_calc(arr, n) returns the license_no of software having maximum rate_of_growth value in l_arr.
+	
+	/*
+	Objective :	This function returns the license_no of software having maximum rate_of_growth value in l_arr.
+
+	Input variables
+                - arr : array of objects of license type
+                - n : number of objects in array arr
+
+	Return value: license number with maximum rate_of_growth
+
+	*/
+======================================================================================================================
+	
+	----------------------------------
+	Function 2 : print_order(arr, n)
+	----------------------------------
+	
+	**********
+	Pseudocode
+	**********
+
+	print_order(arr, n):
+	1.	for i = 1 to n
+	2.		print max(arr[i..n], n-i)
+
+	/*
+	Objective :This function finds and prints the order of buying license
+
+	Input variable :
+                -arr[] : array of objects of license type
+                -n     : number of objects in array arr
+
+	  Return Values  : None
+
+	*/
+
+======================================================================================================================
+	
+----------
+Complexity
+----------
+
+Total no. of software license to buy = n
+
+The max_calc() function works in linear time, 
+line 1, 5-7 take constant time. 
+loop line 2-4 of function1 iterates n times.
+
+print_order() calls the function max_calc() n times, function2 line 1-2.
+
+Therefore, total time complexity is O(n^2). 
+
+Time complexity:	O(n^2)
